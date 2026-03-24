@@ -32,7 +32,7 @@ export const mockLeague: FantasyTeam[] = [
   {
     teamName: 'Fred K.',
     players: [
-      { id: 676929, name: 'Spencer Torkelson' },
+      { id: 679529, name: 'Spencer Torkelson' },
       { id: 663656, name: 'Kyle Tucker' },
       { id: 663586, name: 'Austin Riley' },
       { id: 672695, name: 'Corbin Carroll' },
@@ -72,7 +72,7 @@ export const mockLeague: FantasyTeam[] = [
   {
     teamName: 'Mike B.',
     players: [
-      { id: 669064, name: 'Austin Hays' },
+      { id: 669720, name: 'Austin Hays' },
       { id: 543760, name: 'Marcus Semien' },
       { id: 621566, name: 'Matt Olson' },
       { id: 665862, name: 'Randy Arozarena' },
@@ -105,7 +105,7 @@ export const mockLeague: FantasyTeam[] = [
       { id: 669394, name: 'Adley Rutschman' },
       { id: 646240, name: 'Rafael Devers' },
       { id: 547180, name: 'Bryce Harper' },
-      { id: 669004, name: 'Andrew Vaughn' },
+      { id: 683734, name: 'Andrew Vaughn' },
       { id: 518692, name: 'Freddie Freeman' },
     ],
   },
