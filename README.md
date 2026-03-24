@@ -19,6 +19,7 @@ Do **not** use Node 11 or other legacy versions with this project.
 
 - Default API season is **2025** (`src/lib/mlbSeason.ts`) so HR totals match the completed 2025 regular season in the Stats API.
 - Optional override: create `.env.local` with `VITE_MLB_SEASON=2026` (or another year) when you want that season instead.
+- **Undrafted**: top 5 MLB HR leaders not on any `mockLeague` roster (`src/lib/mlbLeaders.ts`), shown **below** the standings (not ranked), re-fetched on each load / refresh.
 - Verify the API from the CLI: `npm run test:mlb-api` (checks 2025 sample HRs and logs 2026 for comparison).
 
 ---

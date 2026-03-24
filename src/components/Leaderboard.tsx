@@ -8,6 +8,7 @@ type LeaderboardTeam = {
     name: string
     homeRuns: number
   }>
+  subtitle?: string
 }
 
 type LeaderboardProps = {
@@ -25,6 +26,7 @@ function Leaderboard({ teams }: LeaderboardProps) {
           totalHr={team.totalHr}
           players={team.players}
           isLeader={index === 0}
+          subtitle={team.subtitle}
         />
       ))}
     </section>

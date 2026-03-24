@@ -13,9 +13,21 @@ type TeamCardProps = {
   totalHr: number
   players: TeamCardPlayer[]
   isLeader: boolean
+  /** e.g. Undrafted team explanation */
+  subtitle?: string
+  /** When false, hide standings rank (e.g. Undrafted row) */
+  showRank?: boolean
 }
 
-function TeamCard({ rank, teamName, totalHr, players, isLeader }: TeamCardProps) {
+function TeamCard({
+  rank,
+  teamName,
+  totalHr,
+  players,
+  isLeader,
+  subtitle,
+  showRank = true,
+}: TeamCardProps) {
   const [isExpanded, setIsExpanded] = useState(false)
 
   return (
@@ -33,8 +45,13 @@ function TeamCard({ rank, teamName, totalHr, players, isLeader }: TeamCardProps)
         className="flex w-full min-h-[3rem] touch-manipulation items-center gap-3 rounded-xl text-left outline-none ring-emerald-400/40 focus-visible:ring-2 sm:min-h-0 sm:gap-4"
       >
         <div className="min-w-0 flex-1">
-          <p className="text-xs uppercase tracking-wider text-slate-400">#{rank}</p>
+          {showRank ? (
+            <p className="text-xs uppercase tracking-wider text-slate-400">#{rank}</p>
+          ) : null}
           <h2 className="text-lg font-semibold leading-snug text-slate-100 sm:text-xl">{teamName}</h2>
+          {subtitle ? (
+            <p className="mt-1 text-xs leading-relaxed text-slate-500">{subtitle}</p>
+          ) : null}
         </div>
         <div className="flex shrink-0 items-center gap-2 sm:gap-3">
           <div className="text-right">
@@ -59,11 +76,15 @@ function TeamCard({ rank, teamName, totalHr, players, isLeader }: TeamCardProps)
       </button>
 
       {isExpanded ? (
-        <ul className="mt-3 space-y-2 sm:mt-4">
-          {players.map((player) => (
-            <PlayerRow key={player.id} playerName={player.name} homeRuns={player.homeRuns} />
-          ))}
-        </ul>
+        players.length > 0 ? (
+          <ul className="mt-3 space-y-2 sm:mt-4">
+            {players.map((player) => (
+              <PlayerRow key={player.id} playerName={player.name} homeRuns={player.homeRuns} />
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-3 text-sm text-slate-500 sm:mt-4">No players loaded.</p>
+        )
       ) : null}
     </article>
   )
