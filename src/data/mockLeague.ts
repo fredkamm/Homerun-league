@@ -18,105 +18,105 @@
  */
 
 export type FantasyPlayer = {
-  id: number
-  name: string
-}
+  id: number;
+  name: string;
+};
 
 export type FantasyTeam = {
-  teamName: string
-  players: FantasyPlayer[]
-}
+  teamName: string;
+  players: FantasyPlayer[];
+};
 
 /** Placeholder team names — replace with your league’s names. */
 export const mockLeague: FantasyTeam[] = [
   {
-    teamName: 'Fred K.',
+    teamName: "Mike T.",
     players: [
-      { id: 679529, name: 'Spencer Torkelson' },
-      { id: 663656, name: 'Kyle Tucker' },
-      { id: 663586, name: 'Austin Riley' },
-      { id: 672695, name: 'Corbin Carroll' },
-      { id: 669477, name: 'William Contreras' },
+      { id: 545361, name: "Mike Trout" },
+      { id: 670541, name: "Yordan Alvarez" },
+      { id: 607208, name: "Trea Turner" },
+      { id: 666182, name: "Bo Bichette" },
+      { id: 502671, name: "Paul Goldschmidt" },
     ],
   },
   {
-    teamName: 'Dillon C.',
+    teamName: "Brian E.",
     players: [
-      { id: 608070, name: 'Jose Ramirez' },
-      { id: 665487, name: 'Fernando Tatis Jr.' },
-      { id: 656305, name: 'Matt Chapman' },
-      { id: 608324, name: 'Alex Bregman' },
-      { id: 592450, name: 'Aaron Judge' },
+      { id: 571448, name: "Nolan Arenado" },
+      { id: 650333, name: "Jose Altuve" },
+      { id: 592518, name: "Manny Machado" },
+      { id: 671218, name: "Luis Robert Jr." },
+      { id: 656941, name: "Kyle Schwarber" },
     ],
   },
   {
-    teamName: 'Jeff L.',
+    teamName: "Jeff L.",
     players: [
-      { id: 605141, name: 'Mookie Betts' },
-      { id: 665489, name: 'Vladimir Guerrero Jr.' },
-      { id: 682998, name: 'Elly De La Cruz' },
-      { id: 665742, name: 'Juan Soto' },
-      { id: 663853, name: 'CJ Abrams' },
+      { id: 605141, name: "Mookie Betts" },
+      { id: 665489, name: "Vladimir Guerrero Jr." },
+      { id: 682998, name: "Elly De La Cruz" },
+      { id: 665742, name: "Juan Soto" },
+      { id: 663853, name: "CJ Abrams" },
     ],
   },
   {
-    teamName: 'Brett K.',
+    teamName: "Brett K.",
     players: [
-      { id: 677951, name: 'Bobby Witt Jr.' },
-      { id: 683002, name: 'Gunnar Henderson' },
-      { id: 624413, name: 'Pete Alonso' },
-      { id: 608369, name: 'Corey Seager' },
-      { id: 660670, name: 'Ronald Acuna Jr.' },
+      { id: 677951, name: "Bobby Witt Jr." },
+      { id: 683002, name: "Gunnar Henderson" },
+      { id: 624413, name: "Pete Alonso" },
+      { id: 608369, name: "Corey Seager" },
+      { id: 660670, name: "Ronald Acuna Jr." },
     ],
   },
   {
-    teamName: 'Mike B.',
+    teamName: "Mike B.",
     players: [
-      { id: 669720, name: 'Austin Hays' },
-      { id: 543760, name: 'Marcus Semien' },
-      { id: 621566, name: 'Matt Olson' },
-      { id: 665862, name: 'Randy Arozarena' },
-      { id: 672580, name: 'Anthony Volpe' },
+      { id: 669720, name: "Austin Hays" },
+      { id: 543760, name: "Marcus Semien" },
+      { id: 621566, name: "Matt Olson" },
+      { id: 665862, name: "Randy Arozarena" },
+      { id: 672580, name: "Anthony Volpe" },
     ],
   },
   {
-    teamName: 'Mike T.',
+    teamName: "Joe C.",
     players: [
-      { id: 545361, name: 'Mike Trout' },
-      { id: 670541, name: 'Yordan Alvarez' },
-      { id: 607208, name: 'Trea Turner' },
-      { id: 666182, name: 'Bo Bichette' },
-      { id: 502671, name: 'Paul Goldschmidt' },
+      { id: 596019, name: "Francisco Lindor" },
+      { id: 666971, name: "Oneil Cruz" },
+      { id: 660271, name: "Shohei Ohtani" },
+      { id: 668942, name: "Josh Jung" },
+      { id: 677594, name: "Julio Rodriguez" },
     ],
   },
   {
-    teamName: 'Brian E.',
+    teamName: "Fred K.",
     players: [
-      { id: 571448, name: 'Nolan Arenado' },
-      { id: 650333, name: 'Jose Altuve' },
-      { id: 592518, name: 'Manny Machado' },
-      { id: 671218, name: 'Luis Robert Jr.' },
-      { id: 656941, name: 'Kyle Schwarber' },
+      { id: 679529, name: "Spencer Torkelson" },
+      { id: 663656, name: "Kyle Tucker" },
+      { id: 663586, name: "Austin Riley" },
+      { id: 672695, name: "Corbin Carroll" },
+      { id: 669477, name: "William Contreras" },
     ],
   },
   {
-    teamName: 'Nick M.',
+    teamName: "Nick M.",
     players: [
-      { id: 669394, name: 'Adley Rutschman' },
-      { id: 646240, name: 'Rafael Devers' },
-      { id: 547180, name: 'Bryce Harper' },
-      { id: 683734, name: 'Andrew Vaughn' },
-      { id: 518692, name: 'Freddie Freeman' },
+      { id: 669394, name: "Adley Rutschman" },
+      { id: 646240, name: "Rafael Devers" },
+      { id: 547180, name: "Bryce Harper" },
+      { id: 683734, name: "Andrew Vaughn" },
+      { id: 518692, name: "Freddie Freeman" },
     ],
   },
   {
-    teamName: 'Joe C.',
+    teamName: "Dillon C.",
     players: [
-      { id: 596019, name: 'Francisco Lindor' },
-      { id: 666971, name: 'Oneil Cruz' },
-      { id: 660271, name: 'Shohei Ohtani' },
-      { id: 668942, name: 'Josh Jung' },
-      { id: 677594, name: 'Julio Rodriguez' },
+      { id: 608070, name: "Jose Ramirez" },
+      { id: 665487, name: "Fernando Tatis Jr." },
+      { id: 656305, name: "Matt Chapman" },
+      { id: 608324, name: "Alex Bregman" },
+      { id: 592450, name: "Aaron Judge" },
     ],
   },
-]
+];

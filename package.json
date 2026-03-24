@@ -10,8 +10,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "test:mlb-api": "node scripts/verify-mlb-seasons.mjs"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.2.4",
