@@ -40,7 +40,7 @@ export const mockLeague: FantasyTeam[] = [
     ],
   },
   {
-    teamName: 'Dillion C.',
+    teamName: 'Dillon C.',
     players: [
       { id: 608070, name: 'Jose Ramirez' },
       { id: 665487, name: 'Fernando Tatis Jr.' },
