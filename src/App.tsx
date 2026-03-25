@@ -11,6 +11,7 @@ import { mockLeague } from './data/mockLeague'
 import { fetchUndraftedHomeRunHitters, type HomeRunLeaderRow } from './lib/mlbLeaders'
 import { fetchPlayerHomeRuns } from './lib/mlbStats'
 import { getMlbSeason } from './lib/mlbSeason'
+import { buildRosterWithTopNCounting } from './lib/rosterScoring'
 
 function App() {
   const [playerHrById, setPlayerHrById] = useState<Record<number, number>>({})
@@ -52,18 +53,18 @@ function App() {
   const standingsTeams = useMemo(() => {
     return mockLeague
       .map((team) => {
-        const playersWithStats = team.players
-          .map((player) => ({
-            ...player,
-            homeRuns: playerHrById[player.id] ?? 0,
-          }))
-          .sort((a, b) => b.homeRuns - a.homeRuns || a.name.localeCompare(b.name))
-
-        const totalHr = playersWithStats.reduce((sum, player) => sum + player.homeRuns, 0)
+        const inputs = team.players.map((player, rosterIndex) => ({
+          id: player.id,
+          name: player.name,
+          homeRuns: playerHrById[player.id] ?? 0,
+          rosterIndex,
+          draftPosition: player.draftPosition,
+        }))
+        const { players, totalHr } = buildRosterWithTopNCounting(inputs)
 
         return {
           teamName: team.teamName,
-          players: playersWithStats,
+          players,
           totalHr,
         }
       })
@@ -71,26 +72,17 @@ function App() {
   }, [playerHrById])
 
   const undraftedForCard = useMemo(() => {
-    const players = undraftedPlayers
-      .map((p) => ({
-        id: p.id,
-        name: p.name,
-        homeRuns: p.homeRuns,
-      }))
-      .sort((a, b) => b.homeRuns - a.homeRuns || a.name.localeCompare(b.name))
-    const totalHr = players.reduce((sum, p) => sum + p.homeRuns, 0)
-    return { players, totalHr }
+    const inputs = undraftedPlayers.map((p, rosterIndex) => ({
+      id: p.id,
+      name: p.name,
+      homeRuns: p.homeRuns,
+      rosterIndex,
+    }))
+    return buildRosterWithTopNCounting(inputs)
   }, [undraftedPlayers])
 
-  const leagueTotalHr = useMemo(() => {
-    const fantasySum = standingsTeams.reduce((sum, t) => sum + t.totalHr, 0)
-    return fantasySum + undraftedForCard.totalHr
-  }, [standingsTeams, undraftedForCard.totalHr])
-
-  const showPreseasonHint = !isLoading && season === '2026' && leagueTotalHr === 0
-
   return (
-    <main className="mx-auto flex min-h-[100dvh] min-h-screen w-full max-w-3xl flex-1 flex-col justify-start px-3 py-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))] sm:justify-center sm:px-4 sm:py-10 sm:pb-10 sm:pt-10">
+    <main className="mx-auto flex min-h-[100dvh] w-full max-w-3xl flex-1 flex-col justify-start px-3 py-6 pb-[max(1.5rem,env(safe-area-inset-bottom))] pt-[max(1rem,env(safe-area-inset-top))] sm:justify-center sm:px-4 sm:py-10 sm:pb-10 sm:pt-10">
       <section className="flex w-full min-w-0 flex-1 flex-col rounded-2xl border border-slate-800 bg-slate-900/70 p-4 shadow-2xl backdrop-blur sm:rounded-3xl sm:p-6">
         <header className="mb-5 flex flex-col gap-2 sm:mb-6 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
           <div className="min-w-0">
@@ -104,16 +96,6 @@ function App() {
             {lastUpdated ? `Updated ${lastUpdated}` : 'Loading live stats'}
           </p>
         </header>
-
-        {showPreseasonHint ? (
-          <div className="mb-4 rounded-xl border border-sky-500/30 bg-sky-500/10 px-3 py-2 text-xs leading-relaxed text-sky-100">
-            You are loading <strong>2026</strong> season stats, but the API may not have regular-season
-            hitting totals yet (everything shows 0). Use default <strong>2025</strong> or remove{' '}
-            <code className="rounded bg-slate-800 px-1 py-0.5 text-sky-200">VITE_MLB_SEASON=2026</code>{' '}
-            from <code className="rounded bg-slate-800 px-1 py-0.5">.env.local</code> and restart{' '}
-            <code className="rounded bg-slate-800 px-1 py-0.5">npm run dev</code>.
-          </div>
-        ) : null}
 
         {isLoading ? (
           <div className="space-y-3 sm:space-y-4">
@@ -129,12 +111,12 @@ function App() {
             ))}
           </div>
         ) : standingsTeams.length > 0 ? (
-          <div className="flex min-h-0 flex-1 flex-col">
+          <div className="flex min-h-0 flex-1 flex-col gap-8 sm:gap-10">
             <div className="min-h-0 flex-1">
               <Leaderboard teams={standingsTeams} />
             </div>
-            <div className="mt-auto shrink-0 border-t border-slate-700 pt-6">
-              <p className="mb-3 text-xs font-medium uppercase tracking-wider text-slate-500">
+            <div className="shrink-0 border-t border-slate-600/70 pt-7 sm:pt-9">
+              <p className="mb-4 text-xs font-medium uppercase tracking-wider text-slate-500 sm:mb-5">
                 Undrafted — not in standings
               </p>
               <TeamCard

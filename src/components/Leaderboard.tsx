@@ -7,6 +7,8 @@ type LeaderboardTeam = {
     id: number
     name: string
     homeRuns: number
+    isCounted: boolean
+    draftPosition?: number
   }>
   subtitle?: string
 }

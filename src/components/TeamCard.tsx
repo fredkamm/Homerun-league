@@ -5,6 +5,8 @@ type TeamCardPlayer = {
   id: number
   name: string
   homeRuns: number
+  isCounted: boolean
+  draftPosition?: number
 }
 
 type TeamCardProps = {
@@ -79,7 +81,13 @@ function TeamCard({
         players.length > 0 ? (
           <ul className="mt-3 space-y-2 sm:mt-4">
             {players.map((player) => (
-              <PlayerRow key={player.id} playerName={player.name} homeRuns={player.homeRuns} />
+              <PlayerRow
+                key={player.id}
+                playerName={player.name}
+                homeRuns={player.homeRuns}
+                isCounted={player.isCounted}
+                draftPosition={player.draftPosition}
+              />
             ))}
           </ul>
         ) : (
